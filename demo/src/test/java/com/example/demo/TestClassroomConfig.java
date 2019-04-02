@@ -13,31 +13,16 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestClassroomConfig {
-    //    @Autowired
-//   // @Qualifier("current")
-//
-//    Instructors instructors;
-//    Students students;
-//    Classroom classroom;
-//
-//
-//    @Test
-//    public void currentCohortStudents() {
-//        //Given
-//        List<Student> myList = students.findAll();
-//        boolean expected = myList.contains(students);
-//
-//        //When
-//        Students actual = classroom.getStudents();
-//
-//        //Then
-//        Assert.assertEquals(expected, actual);
-//    }
+
     @Autowired
     @Qualifier("current")
     Classroom classroom;
-    // @Autowired @Qualifier("students")
-    Student student;
+    @Autowired
+    @Qualifier("previous")
+    Classroom previousClassroom;
+     @Autowired
+     //@Qualifier("students")
+    //Student student;
     Students students;
 
     //    @Autowired
@@ -47,15 +32,28 @@ public class TestClassroomConfig {
         //Given
         //List<Student> myList = students.findAll();
         List<Student> expected = students.findAll();
-        int count = 0;
-        for (Student s : expected) {
-            Assert.assertTrue(classroom.getStudents().equals(expected.get(count++)));
-        }
-//        //When
-//        Students actual = classroom.getStudents();
-//
-//        //Then
-//        Assert.assertEquals(expected, actual);
-//    }
+        //int count = 0;
+        Assert.assertEquals(expected, classroom.getStudents().findAll());
+
     }
+    @Test
+    public void testPreviousStudents(){
+
+        Integer expected = 4;
+
+        Assert.assertEquals(expected, previousClassroom.getStudents().size());
+    }
+
+    @Test
+
+    public void testCurrentLectures(){
+
+        Integer expected = 6;
+        Assert.assertEquals(expected,classroom.getInstructors().size());
+    }
+@Test
+    public void testPreviousLectures(){
+        Integer expected =3;
+        Assert.assertEquals(expected,previousClassroom.getInstructors().size());
+}
 }

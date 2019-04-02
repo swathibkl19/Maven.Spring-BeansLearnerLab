@@ -24,7 +24,7 @@ public class InstructorsConfig {
         }
         return new Instructors(Arrays.asList(instructorArray));
     }
-    @Primary
+
     @Bean
     public Instructors tcUkInstructors() {
         String[] instructorNames = {"Leon",  "Dolio", "Froilan"};
@@ -37,7 +37,7 @@ public class InstructorsConfig {
         return inputInstructors(instructorNames);
     }
 
-
+    @Primary
     @Bean(name ="ZipCodeWilmington")
     public Instructors ZipCodeWilmington() {
         String [] instructorNames ={"Leon","Dolio","Froilan","Wilhem","Nhu","Kris"};

@@ -9,6 +9,6 @@ public interface Teacher {
     public void lecture(Iterable<? extends Learner> learners, Double numberOfHours);
 
 
-    void lecture();
+
 
 }
